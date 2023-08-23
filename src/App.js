@@ -1,31 +1,45 @@
-import Hello from "./component/Hello";
-import Welcome from "./component/Welcome";
 
 
+function Header(props) {
+  return <header>
+      <h1><a href='/'>{props.title}</a></h1>
 
+
+  </header>
+}
+function Nav(props) {
+  const arr =[];
+  for (let i = 0; i < props.topics.length; i++) {
+       let t = props.topics[i];
+       arr.push(<li key={t.id}><a href="/ "></a>{t.title}</li>)
+  }
+  return <nav>
+        <ol>
+          {arr}      
+        </ol>
+      </nav>
+}
+function Article(props) {
+  // 배열
+  return <article>
+        <h2>{props.title}</h2>
+        {props.body}
+        
+         </article>
+}
 function App() {
-  // 변수
-  const name = "Hong";
-  let age = 30;   
-  let gender = true;
-  // 객체
-  const naver = {
-    name : "네이버",
-    url : "https://www.naver.com",
-    target : "_blank"
-  } 
+ const topics = [
+  {id:1, title:'HTML', body:'HyperText Markup Language'},
+  {id:2, title:'CSS', body:'Cascading Style Sheets'},
+  {id:3, title:'JS', body:'JavaScript'},
+ ]
   return (
     <div className="App">
-      {/* 컴포넌트 */}
-      <Hello></Hello>
-      
-      <Welcome></Welcome>
+    <Header title="REACT" />
+    <Nav topics={topics}/>
+    <Article title="Welcome" body="Hello, WEB" />
+    <Article title="Hi" body="Hello React" />
     
-       {/*{변수,숫자,문자열} 사용가능 */}
-     <h1> {'이름 : '} {name} , {"나이 : "} , {age}</h1>
-     <h1> 이름 : {name} , 나이: {age} </h1>
-     {/* 객체 {객체이름,속성} */}
-     <h2><a href={naver.url} target={naver.target}>{naver.name}</a></h2>
     </div>
   );
 }
